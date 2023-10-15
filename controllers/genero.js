@@ -31,8 +31,22 @@ const createGenero = async (req = request, res = response) => {
    
 }
 
+
+const getGeneros = async ( req = request, res = response) => {
+    try{
+        const { estado } = req.query
+
+        const generos  = await Genero.find({ estado })
+
+        return res.json(generos)
+
+    } catch(error) {
+        console.log(error)
+        return res.status(500).json({msj: error})   
+
+    }
+}
+
 module.exports = {
-    createGenero
+    createGenero, getGeneros
 } 
-
-
